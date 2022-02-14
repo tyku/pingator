@@ -1,5 +1,5 @@
-const bodyParserMiddleware = require('./body-parser');
+const bodyParserMiddleware = require("./body-parser");
 
 module.exports = {
-    bodyParserMiddleware,
+  bodyParserMiddleware,
 };

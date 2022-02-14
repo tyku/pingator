@@ -1,23 +1,22 @@
-const { POST } = require('../constants');
-
+const { POST } = require("../constants");
 
 class Router {
-    routes;
+  routes;
 
-    constructor() {
-        this.routes = new Map();
-    }
+  constructor() {
+    this.routes = new Map();
+  }
 
-    post(url, fn) {
-        const method = POST;
-        const key = `${method}${url}`;
+  post(url, fn) {
+    const method = POST;
+    const key = `${method}${url}`;
 
-        this.routes.set(key, fn);
-    }
+    this.routes.set(key, fn);
+  }
 
-    getHandler(key) {
-        return this.routes.get(key);
-    }
+  getHandler(key) {
+    return this.routes.get(key);
+  }
 }
 
 module.exports = Router;

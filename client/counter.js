@@ -1,17 +1,17 @@
 class Counter {
-    counter = 0;
+  counter = 0;
 
-    inc() {
-        ++this.counter;
+  inc() {
+    ++this.counter;
 
-        return this.counter;
-    }
+    return this.counter;
+  }
 
-    get() {
-        const { counter } = this;
+  get() {
+    const { counter } = this;
 
-        return counter;
-    }
+    return counter;
+  }
 }
 
 module.exports = Counter;

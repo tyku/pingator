@@ -1,18 +1,17 @@
 class StatisticStorage {
-    storage = new Map();
+  storage = new Map();
 
-    get(label) {
-        const { storage } = this;
+  get(label) {
+    const { storage } = this;
 
-        return storage.get(label);
-    }
+    return storage.get(label);
+  }
 
-    set(label, data) {
-        const { storage } = this;
+  set(label, data) {
+    const { storage } = this;
 
-        storage.set(label, data);
-    }
-
+    storage.set(label, data);
+  }
 }
 
 module.exports = new StatisticStorage();

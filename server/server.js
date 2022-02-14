@@ -1,35 +1,33 @@
-const http = require('http');
+const http = require("http");
 
-const statistic = require('./site-statistic');
-const { PORT, HOST } = require('./constants');
-const findRote = require('./routes');
-const { bodyParserMiddleware } = require('./middlewares');
-
+const statistic = require("./site-statistic");
+const { PORT, HOST, TIMEOUT } = require("./constants");
+const findRote = require("./routes");
+const { bodyParserMiddleware } = require("./middlewares");
 
 const requestListener = function (req, res) {
-    res.setHeader('Content-Type', 'application/json');
+  res.setHeader("Content-Type", "application/json");
 
-    const { method, url } = req;
+  const { method, url } = req;
 
-    findRote(method, url, bodyParserMiddleware)(req, res);
-
+  findRote(method, url, bodyParserMiddleware)(req, res);
 };
 
 const server = http.createServer(requestListener);
 server.listen(PORT, HOST, () => {
-    console.log(`Server is running on http://${HOST}:${PORT}`);
+  console.log(`Server is running on ${HOST}:${PORT}`);
 });
 
-server.on('connection', function (socket) {
-    socket.setTimeout(  10000);
+server.on("connection", function (socket) {
+  socket.setTimeout(TIMEOUT);
 });
 
-server.on('close', function() {
-    console.log(`Average time: ${statistic.getAverage()}`);
-    console.log(`Median time: ${statistic.getMedian()}`);
+server.on("close", function () {
+  console.log(`Average time: ${statistic.getAverage()} ms`);
+  console.log(`Median time: ${statistic.getMedian()} ms`);
 });
 
-process.on('SIGINT', function() {
-    console.log('Stopping ... it cat take about 10 sec');
-    server.close();
+process.on("SIGINT", function () {
+  console.log("Stopping ... it cat take about 10 sec");
+  server.close();
 });

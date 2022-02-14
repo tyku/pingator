@@ -1,44 +1,44 @@
-const { Counter } = require('../libs/statistic/aggregators');
+const { Counter } = require("../libs/statistic/aggregators");
 
 class ServerStatistic {
-    total;
+  total;
 
-    successRequests;
+  successRequests;
 
-    failedRequests;
+  failedRequests;
 
-    timedRequests;
+  timedRequests;
 
-    constructor() {
-        this.total = new Counter('total_requests');
-        this.successRequests = new Counter('success_requests');
-        this.failedRequests = new Counter('failed_requests');
-        this.timedRequests = new Counter('timed_requests');
-    }
+  constructor() {
+    this.total = new Counter("total_requests");
+    this.successRequests = new Counter("success_requests");
+    this.failedRequests = new Counter("failed_requests");
+    this.timedRequests = new Counter("timed_requests");
+  }
 
-    getTotal() {
-        const { total } = this;
+  getTotal() {
+    const { total } = this;
 
-        return total.getSize();
-    }
+    return total.getSize();
+  }
 
-    getSuccess() {
-        const { successRequests } = this;
+  getSuccess() {
+    const { successRequests } = this;
 
-        return successRequests.getSize();
-    }
+    return successRequests.getSize();
+  }
 
-    getFailed() {
-        const { failedRequests } = this;
+  getFailed() {
+    const { failedRequests } = this;
 
-        return failedRequests.getSize();
-    }
+    return failedRequests.getSize();
+  }
 
-    getTimed() {
-        const { timedRequests } = this;
+  getTimed() {
+    const { timedRequests } = this;
 
-        return timedRequests.getSize();
-    }
+    return timedRequests.getSize();
+  }
 }
 
 module.exports = new ServerStatistic();

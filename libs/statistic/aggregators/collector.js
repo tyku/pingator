@@ -1,35 +1,35 @@
-const StatisticStorage = require('../storage');
+const StatisticStorage = require("../storage");
 
 const INITIAL_VALUE = [];
 
 class Collector {
-    storage = StatisticStorage;
+  storage = StatisticStorage;
 
-    name
+  name;
 
-    constructor(name) {
-        this.name = name;
+  constructor(name) {
+    this.name = name;
+  }
+
+  add(data) {
+    const { storage, name } = this;
+
+    let value = storage.get(name);
+
+    if (!value) {
+      value = INITIAL_VALUE;
     }
 
-    add(data) {
-        const { storage, name } = this;
+    value.push(data);
 
-        let value = storage.get(name);
+    storage.set(name, value);
+  }
 
-        if (!value) {
-            value = INITIAL_VALUE;
-        }
+  getAll() {
+    const { storage, name } = this;
 
-        value.push(data);
-
-        storage.set(name, value);
-    }
-
-    getAll() {
-        const { storage, name } = this;
-
-        return storage.get(name);
-    }
+    return storage.get(name);
+  }
 }
 
 module.exports = Collector;

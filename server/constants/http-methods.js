@@ -1,5 +1,5 @@
-const POST = 'POST';
+const POST = "POST";
 
 module.exports = {
-    POST,
+  POST,
 };
