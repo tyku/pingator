@@ -1,5 +1,8 @@
 #Pingator
 
+## Before start
+`npm install`
+
 ## Client
 
 ### Run
