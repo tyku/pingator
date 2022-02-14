@@ -1,17 +1,22 @@
 const { URL } = require('url');
 
+const TIMEOUT = 10000;
+
 const httpProvider = require('./httpProvider');
 const httpsProvider = require('./httpsProvider');
 
 async function request(url, options = {}) {
     const { data } = options;
-    const { protocol, hostname, pathname, search } = parseUrl(url);
+
+    const { protocol, hostname, pathname, search, port } = parseUrl(url);
     const request = getClient(protocol);
 
     const urlOptions = {
         ...options,
         path: `${pathname}${search}`,
         hostname,
+        timeout: TIMEOUT,
+        port,
     }
 
     return request(urlOptions, data)
