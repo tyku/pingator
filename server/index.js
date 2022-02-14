@@ -28,6 +28,6 @@ server.on("close", function () {
 });
 
 process.on("SIGINT", function () {
-  console.log("Stopping ... it cat take about 10 sec");
+  console.log("Stopping ... it cat takes more than 10 sec");
   server.close();
 });

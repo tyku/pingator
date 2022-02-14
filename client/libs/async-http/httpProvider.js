@@ -1,5 +1,5 @@
 const http = require("http");
-const InternalError = require("./errors/internal-error");
+const { InternalError, ConnectionRefusedError } = require("../errors");
 
 async function httpProvider(urlOptions, data) {
   const options = {
@@ -31,7 +31,14 @@ const requestPromise = (urlOptions, data) => {
       });
     });
 
-    req.on("error", reject);
+    req.on("error", (err) => {
+
+      if(err && err.code === 'ECONNREFUSED') {
+        return reject(new ConnectionRefusedError());
+      }
+
+      return reject();
+    });
     req.write(data);
     req.end();
   });
