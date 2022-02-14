@@ -46,10 +46,12 @@ const intervalId = setInterval(async () => {
 }, REQUEST_INTERVAL);
 
 process.on("exit", function () {
+  console.log('----------------------');
   console.log(`Total requests: ${ServerStatistic.getTotal()}`);
   console.log(`Success requests: ${ServerStatistic.getSuccess()}`);
   console.log(`Failed requests: ${ServerStatistic.getFailed()}`);
   console.log(`Timed requests: ${ServerStatistic.getTimed()}`);
+  console.log('----------------------');
 });
 
 process.on("SIGINT", function () {

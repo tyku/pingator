@@ -23,8 +23,11 @@ server.on("connection", function (socket) {
 });
 
 server.on("close", function () {
+
+  console.log('----------------------');
   console.log(`Average time: ${statistic.getAverage()} ms`);
   console.log(`Median time: ${statistic.getMedian()} ms`);
+  console.log('----------------------');
 });
 
 process.on("SIGINT", function () {
